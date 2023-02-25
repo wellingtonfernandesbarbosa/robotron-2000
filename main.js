@@ -44,8 +44,9 @@ controle.forEach( (elemento) => {
 
 function manipulaDados(operacao, controle) {
     const peca = controle.querySelector("[data-contador]")
-
-    if (operacao === "-") {
+    if (parseInt(peca.value) == 0 && operacao === "-"){
+        peca.value = peca.value 
+    } else if (operacao === "-") {
         peca.value = parseInt(peca.value) - 1
     } else {
         peca.value = parseInt(peca.value) + 1
@@ -54,7 +55,9 @@ function manipulaDados(operacao, controle) {
 
 function atualizaEstatisticas (peca, operacao) {
     estatisticas.forEach((elemento) => {
-        if (operacao === "+") {
+        if (parseInt(elemento.textContent) == 0 && operacao === "-"){
+            elemento.textContent = elemento.textContent
+        } else if (operacao === "+") {
             elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
         } else {
             elemento.textContent = parseInt(elemento.textContent) - pecas[peca][elemento.dataset.estatistica]
