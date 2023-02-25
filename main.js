@@ -1,5 +1,14 @@
 const controle = document.querySelectorAll("[data-controle]")
 const estatisticas = document.querySelectorAll("[data-estatistica]")
+const robo = document.querySelector(".robo")
+const robos = [
+    'img/robotronAmarelo.png', 
+    'img/robotronAzul.png', 
+    'img/robotronRosa.png', 
+    'img/robotronBranco.png', 
+    'img/robotronVermelho.png',
+    'img/robotronPreto.png'
+]
 const pecas = {
     "bracos": {
         "forca": 29,
@@ -34,10 +43,19 @@ const pecas = {
     }
 }
 
+contador = 0;
+robo.addEventListener("click", () => {
+    robo.src = robos[contador]
+    contador += 1;
+    if (contador == robos.length) {
+        contador = 0;
+    }
+})
+
 controle.forEach( (elemento) => {
     elemento.addEventListener("click", (evento) => {
         const operacao = evento.target.dataset.controle
-        manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
+        manipulaDados(operacao, evento.target.parentNode)
         atualizaEstatisticas(evento.target.dataset.peca, operacao)
     })
 })
